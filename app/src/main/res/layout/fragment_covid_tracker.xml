@@ -70,6 +70,7 @@
                 android:textSize="@dimen/title_size3" />
 
             <TextView
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -247,6 +248,7 @@
                         android:orientation="horizontal">
 
                         <View
+                            android:id="@+id/confirm"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:background="@color/yellow" />
@@ -258,7 +260,7 @@
                             android:layout_marginStart="10dp"
                             android:fontFamily="@string/regular"
                             android:text="@string/confirm"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/text_size" />
 
                     </LinearLayout>
@@ -270,7 +272,7 @@
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/bold"
                         android:text="12345"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/title_size" />
 
                     <TextView
@@ -280,7 +282,7 @@
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/regular"
                         android:text="( + 32 )"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/text_size" />
                 </LinearLayout>
 
@@ -318,20 +320,20 @@
                             android:layout_marginStart="10dp"
                             android:fontFamily="@string/regular"
                             android:text="@string/active"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/text_size" />
 
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/totalActive"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/bold"
                         android:text="12345"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/title_size"
-                        android:id="@+id/totalActive"/>
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/title_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -339,7 +341,7 @@
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/regular"
                         android:text=""
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/text_size" />
                 </LinearLayout>
 
@@ -379,7 +381,7 @@
                             android:layout_marginStart="10dp"
                             android:fontFamily="@string/regular"
                             android:text="@string/recovered"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/text_size" />
 
                     </LinearLayout>
@@ -391,7 +393,7 @@
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/bold"
                         android:text="12345"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/title_size" />
 
                     <TextView
@@ -401,7 +403,7 @@
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/regular"
                         android:text="( + 32 )"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/text_size" />
                 </LinearLayout>
 
@@ -440,7 +442,7 @@
                             android:layout_marginStart="10dp"
                             android:fontFamily="@string/regular"
                             android:text="Death"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/text_size" />
 
                     </LinearLayout>
@@ -451,7 +453,7 @@
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/bold"
                         android:text="12345"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/title_size" />
 
                     <TextView
@@ -460,7 +462,7 @@
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/regular"
                         android:text="( + 32 )"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/text_size" />
                 </LinearLayout>
 
@@ -499,7 +501,7 @@
                             android:layout_marginStart="10dp"
                             android:fontFamily="@string/regular"
                             android:text="Tests"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/text_size" />
 
                     </LinearLayout>
@@ -511,7 +513,7 @@
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/bold"
                         android:text="12345"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/title_size" />
 
                     <TextView
