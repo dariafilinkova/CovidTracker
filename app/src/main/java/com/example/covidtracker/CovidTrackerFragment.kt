@@ -11,6 +11,7 @@ import org.eazegraph.lib.models.PieModel
 
 import android.graphics.Color
 import android.os.Handler
+import androidx.fragment.app.viewModels
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,6 +27,7 @@ class CovidTrackerFragment : Fragment() {
     private val scope = CoroutineScope(Dispatchers.Main)
     private lateinit var listOfCountryData: List<CountryData>
     val api = CovidTrackerAPIProvider.api
+    private val viewModel: CovidTrackerViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,13 +44,19 @@ class CovidTrackerFragment : Fragment() {
         FragmentCovidTrackerBinding.bind(view).apply {
             var date = binding.date
             date.setText(SimpleDateFormat().format(Calendar.getInstance().time).toString())
+            var chosenCountry = countryName.text.toString()
+            //binding.totalActive.text= viewModel.getDataOfCountry(chosenCountry).toString()
             //var totalActive=binding.totalActive
             //totalActive.setText(api.getCountryData().toString())
             //val currentCountry =
-            scope.launch {
-                val currentCountry = api.getCountryInfo("Belarus")
-                binding.totalActive.text=currentCountry.active
-            }
+             viewModel.getDataOfCountry(chosenCountry)
+
+            //viewModel.getDataOfCountry(chosenCountry)
+          // scope.launch {
+            //    val currentCountry = api.getCountryInfo(chosenCountry)
+              //  binding.totalActive.text=currentCountry.active
+          // binding.totalActive.text=api.getCountryInfo(chosenCountry).active
+            //}
             piechart.apply {
                 addPieSlice(PieModel("Confirm", 15F, Color.parseColor("#FBC233")))
                 addPieSlice(PieModel("Active", 25F, Color.parseColor("#007afe")))

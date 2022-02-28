@@ -3,6 +3,7 @@ package com.example.covidtracker
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface CovidTrackerAPI {
@@ -10,7 +11,7 @@ interface CovidTrackerAPI {
 
     @GET("countries/{country}")
     suspend fun getCountryInfo(
-        @Query("country") method: String,
+        @Path("country") method: String,
     ) : CountryData
 
     @GET("countries")
