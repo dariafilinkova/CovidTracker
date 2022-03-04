@@ -1,5 +1,6 @@
 package com.example.covidtracker.data
 
+import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,24 +12,16 @@ class CountryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val countryName = view.findViewById<TextView>(R.id.countryName)
     val countryCases = view.findViewById<TextView>(R.id.countryCases)
     val countryFlag = view.findViewById<ImageView>(R.id.countryFlag)
-//    val numberOfCountry=view.findViewById<ImageView>(R.id.numberOfCountry)
-
-
-    fun incrementNumberOfCountry(numberOfCountry: Int): Int {
-        return numberOfCountry.inc()
-    }
+    val numberOfCountry=view.findViewById<TextView>(R.id.numberOfCountry)
 
     fun input(country: CountryData) {
         countryName.text = country.country
         countryCases.text = country.cases
-//        Picasso.whe(countryFlag.context)
-//            .load(country.flag)
-//            .into(countryFlag)
-//        Glide.with(countryFlag.context)
-//            .load(country.flag)
-//            .into(countryFlag)
+        for(i in 0..listOf<CountryData>().size) {
+            numberOfCountry.text = adapterPosition.inc().toString()
+        }
         Picasso.get()
-            .load(country.flag)
+            .load(country.countryInfo?.flag)
             .into(countryFlag)
     }
 }

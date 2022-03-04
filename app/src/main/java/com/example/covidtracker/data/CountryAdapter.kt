@@ -26,7 +26,6 @@ class CountryAdapter : RecyclerView.Adapter<CountryViewHolder>() {
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         val item = country[position]
         holder.input(item)
-        holder.incrementNumberOfCountry(position)
     }
 
     override fun getItemCount(): Int {

@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.covidtracker.CovidTrackerFragment
 import com.example.covidtracker.data.CountryAdapter
 import com.example.covidtracker.databinding.FragmentCountryListBinding
 
@@ -50,11 +49,11 @@ class CountryListFragment : Fragment() {
         }
     }
 
-    companion object {
+    companion  object {
 
         @JvmStatic
-        fun newInstance(): CovidTrackerFragment {
-            return CovidTrackerFragment()
+        fun newInstance(): CountryListFragment {
+            return CountryListFragment()
         }
     }
 }

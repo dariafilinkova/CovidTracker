@@ -1,6 +1,5 @@
 package com.example.covidtracker.data
 
-import android.media.Image
 import com.google.gson.annotations.SerializedName
 
 data class CountryData(
@@ -24,7 +23,7 @@ data class CountryData(
     val active: String,
     @SerializedName("tests")
     val tests: String,
-    @SerializedName("flag")
-    val flag: String
+    @SerializedName("countryInfo")
+    val countryInfo:CountryInfo? = null
 )
 

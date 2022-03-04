@@ -7,7 +7,6 @@ import retrofit2.http.Path
 
 interface CovidTrackerAPI {
 
-
     @GET("countries/{country}")
     suspend fun getCountryInfo(
         @Path("country") method: String,

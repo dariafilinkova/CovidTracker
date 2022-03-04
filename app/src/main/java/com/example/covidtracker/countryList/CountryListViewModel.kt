@@ -7,13 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.covidtracker.data.CountryData
 import com.example.covidtracker.networking.retrofit.CovidTrackerAPIProvider
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class CountryListViewModel : ViewModel() {
     private val _countryLiveData = MutableLiveData<List<CountryData>>()
@@ -24,8 +19,7 @@ class CountryListViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 _countryLiveData.postValue(api.getCountryList())
-            }
-            catch (e: Exception){
+            } catch (e: Exception) {
                 Log.e("TAG", e.message.orEmpty())
             }
         }

@@ -68,7 +68,8 @@
                 android:fontFamily="@string/bold"
                 android:text="Belarus"
                 android:textColor="@color/white"
-                android:textSize="@dimen/title_size3" />
+                android:textSize="@dimen/title_size3"
+                android:enabled="true" />
 
             <TextView
                 android:id="@+id/date"
