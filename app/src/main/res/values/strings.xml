@@ -8,4 +8,7 @@
     <string name="confirm">Confirm</string>
     <string name="active">Active</string>
     <string name="recovered">Recovered</string>
+    <string name="country_name">Country name</string>
+    <string name="total_cases">Total cases</string>
+    <string name="numberOfCountry">01</string>
 </resources>

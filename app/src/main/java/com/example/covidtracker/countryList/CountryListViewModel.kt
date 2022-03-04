@@ -1,4 +1,4 @@
-package com.example.covidtracker
+package com.example.covidtracker.countryList
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -7,20 +7,25 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.covidtracker.data.CountryData
 import com.example.covidtracker.networking.retrofit.CovidTrackerAPIProvider
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class CovidTrackerViewModel : ViewModel() {
+class CountryListViewModel : ViewModel() {
+    private val _countryLiveData = MutableLiveData<List<CountryData>>()
+    val countryLiveData: LiveData<List<CountryData>> = _countryLiveData
     val api = CovidTrackerAPIProvider.api
-    private val _countryInfo= MutableLiveData<CountryData>()
-    val countryInfo:LiveData<CountryData> = _countryInfo
 
-
-    fun getDataOfCountry(country: String) {
+    fun getData() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                _countryInfo.postValue(api.getCountryInfo(country))
-            } catch (e: Exception) {
+                _countryLiveData.postValue(api.getCountryList())
+            }
+            catch (e: Exception){
                 Log.e("TAG", e.message.orEmpty())
             }
         }

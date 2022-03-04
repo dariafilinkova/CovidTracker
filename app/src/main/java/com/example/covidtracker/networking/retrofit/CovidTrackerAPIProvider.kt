@@ -1,12 +1,11 @@
-package com.example.covidtracker
+package com.example.covidtracker.networking.retrofit
 
-import kotlinx.coroutines.withContext
+import com.example.covidtracker.networking.api.CovidTrackerAPI
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.converter.gson.GsonConverterFactory
 
 import retrofit2.Retrofit
-import kotlin.coroutines.CoroutineContext
 
 
 object CovidTrackerAPIProvider {
@@ -19,11 +18,5 @@ object CovidTrackerAPIProvider {
         .addConverterFactory(GsonConverterFactory.create()).client(client)
         .build()
 
-
     val api = retrofit.create(CovidTrackerAPI::class.java)
-    /* fun getCountryData(country: String) : CountryData {
-         withContext(CoroutineContext){
-             api.getCountryInfo(country)
-         }
-     }*/
 }

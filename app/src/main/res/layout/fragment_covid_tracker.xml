@@ -449,6 +449,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/death"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
@@ -458,6 +459,7 @@
                         android:textSize="@dimen/title_size" />
 
                     <TextView
+                        android:id="@+id/todayDeath"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
@@ -529,6 +531,5 @@
 
             </com.google.android.material.card.MaterialCardView>
         </GridLayout>
-
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

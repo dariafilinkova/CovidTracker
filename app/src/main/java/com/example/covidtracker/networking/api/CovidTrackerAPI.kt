@@ -1,10 +1,9 @@
-package com.example.covidtracker
+package com.example.covidtracker.networking.api
 
+import com.example.covidtracker.data.CountryData
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.POST
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface CovidTrackerAPI {
 
@@ -15,6 +14,6 @@ interface CovidTrackerAPI {
     ) : CountryData
 
     @GET("countries")
-    fun getCountryData(): Call<List<CountryData>>
+    suspend fun getCountryList(): List<CountryData>
 
 }
