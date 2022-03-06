@@ -1,13 +1,13 @@
 package com.example.covidtracker
 
+import android.content.Context
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.example.covidtracker.databinding.FragmentCovidTrackerBinding
 import org.eazegraph.lib.models.PieModel
 import android.graphics.Color
+import android.view.*
 import androidx.fragment.app.viewModels
 import com.example.covidtracker.countryList.CountryListFragment
 import java.util.*
@@ -27,7 +27,6 @@ class CovidTrackerFragment : Fragment() {
         binding = FragmentCovidTrackerBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -39,13 +38,14 @@ class CovidTrackerFragment : Fragment() {
 
             viewModel.countryInfo.observe(viewLifecycleOwner) { countryData ->
                 with(binding) {
+                    binding.refresh.isRefreshing = false
                     totalActive.text = countryData.active
                     totalConfirm.text = countryData.cases
-                    todayConfirm.text = countryData.todayCases
+                    todayConfirm.text = "+ "+countryData.todayCases
                     death.text = countryData.deaths
-                    todayDeath.text = countryData.todayDeaths
+                    todayDeath.text = "+ "+countryData.todayDeaths
                     totalRecovered.text = countryData.recovered
-                    todayRecovered.text = countryData.todayRecovered
+                    todayRecovered.text = "+ "+countryData.todayRecovered
                     totalTests.text = countryData.tests
                     piechart.apply {
                         addPieSlice(

@@ -1,14 +1,14 @@
 package com.example.covidtracker.countryList
 
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.covidtracker.R
 import com.example.covidtracker.data.CountryAdapter
 import com.example.covidtracker.databinding.FragmentCountryListBinding
 
@@ -26,6 +26,7 @@ class CountryListFragment : Fragment() {
         binding.refresh.setOnRefreshListener {
             viewModel.getData()
         }
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -48,8 +49,20 @@ class CountryListFragment : Fragment() {
             }
         }
     }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu,menu )
+        super.onCreateOptionsMenu(menu, inflater)
+    }
 
-    companion  object {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id=item.itemId
+        if(id==R.id.search){
+            Toast.makeText(activity, "Settings", Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    companion object {
 
         @JvmStatic
         fun newInstance(): CountryListFragment {

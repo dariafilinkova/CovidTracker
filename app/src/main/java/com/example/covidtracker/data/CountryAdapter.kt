@@ -31,4 +31,9 @@ class CountryAdapter : RecyclerView.Adapter<CountryViewHolder>() {
     override fun getItemCount(): Int {
         return country.size
     }
+
+    fun filterList(filteredList: List<CountryData>) {
+        country=filteredList
+        notifyDataSetChanged()
+    }
 }
