@@ -19,4 +19,10 @@
     <string name="updated_at">Updated at</string>
     <string name="date">01.01.2022</string>
     <string name="country">Belarus</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="home">home</string>
+    <string name="global">global</string>
+    <string name="notification">notification</string>
+    <string name="introduction_text">FORGET TO WASH HANDS\nOR\nCHANGE MASK?</string>
+    <string name="title_notification">Title</string>
 </resources>

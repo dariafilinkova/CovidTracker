@@ -27,6 +27,7 @@ class CovidTrackerFragment : Fragment() {
         binding = FragmentCovidTrackerBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -41,11 +42,11 @@ class CovidTrackerFragment : Fragment() {
                     binding.refresh.isRefreshing = false
                     totalActive.text = countryData.active
                     totalConfirm.text = countryData.cases
-                    todayConfirm.text = "+ "+countryData.todayCases
+                    todayConfirm.text = "+ " + countryData.todayCases
                     death.text = countryData.deaths
-                    todayDeath.text = "+ "+countryData.todayDeaths
+                    todayDeath.text = "+ " + countryData.todayDeaths
                     totalRecovered.text = countryData.recovered
-                    todayRecovered.text = "+ "+countryData.todayRecovered
+                    todayRecovered.text = "+ " + countryData.todayRecovered
                     totalTests.text = countryData.tests
                     piechart.apply {
                         addPieSlice(

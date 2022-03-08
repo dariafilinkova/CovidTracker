@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp"
     android:layout_marginTop="8dp"
-    app:cardElevation="3dp">
+    app:cardElevation="3dp"
+    app:cardBackgroundColor="#8C94DD">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,14 +16,15 @@
 
         <TextView
             android:id="@+id/numberOfCountry"
-            android:layout_width="40dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:text="@string/numberOfCountry"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:flow_verticalAlign="center"/>
+            app:flow_verticalAlign="center"
+            android:textSize="25sp"/>
 
         <ImageView
             android:id="@+id/countryFlag"
@@ -40,8 +42,10 @@
             android:text="country"
             android:textColor="@color/black"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintStart_toEndOf="@id/countryFlag"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/countryCases"
@@ -50,7 +54,9 @@
             android:text="@string/total_cases"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
