@@ -8,7 +8,9 @@ import com.example.covidtracker.databinding.FragmentCovidTrackerBinding
 import org.eazegraph.lib.models.PieModel
 import android.graphics.Color
 import android.view.*
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.covidtracker.countryList.CountryListFragment
 import java.util.*
 import java.text.SimpleDateFormat
@@ -16,7 +18,7 @@ import java.text.SimpleDateFormat
 
 class CovidTrackerFragment : Fragment() {
 
-    private lateinit var binding: FragmentCovidTrackerBinding
+    private lateinit var binding : FragmentCovidTrackerBinding
     private val viewModel: CovidTrackerViewModel by viewModels()
 
     override fun onCreateView(
@@ -34,12 +36,11 @@ class CovidTrackerFragment : Fragment() {
         FragmentCovidTrackerBinding.bind(view).apply {
             var date = binding.date
             date.setText(SimpleDateFormat().format(Calendar.getInstance().time).toString())
-            var chosenCountry = countryName.text.toString()
-            viewModel.getDataOfCountry(chosenCountry)
 
             viewModel.countryInfo.observe(viewLifecycleOwner) { countryData ->
                 with(binding) {
-                    binding.refresh.isRefreshing = false
+                    countryName.text = countryData.country
+                    refresh.isRefreshing = false
                     totalActive.text = countryData.active
                     totalConfirm.text = countryData.cases
                     todayConfirm.text = "+ " + countryData.todayCases
@@ -82,11 +83,13 @@ class CovidTrackerFragment : Fragment() {
                 }
             }
             countryName.setOnClickListener {
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.fragmentContainer, CountryListFragment.newInstance())
-                    .commit()
+                    findNavController().navigate(R.id.action_covid_tracker_home_to_country_list)
+
             }
+        }
+        setFragmentResultListener("request_key") { requestKey, bundle ->
+            val country = bundle.getString("country")
+            viewModel.getDataOfCountry(country.orEmpty())
         }
     }
 

@@ -31,7 +31,9 @@
             android:layout_height="46dp"
             android:layout_marginStart="169dp"
             android:layout_marginTop="35dp"
+            android:layout_marginEnd="40dp"
             android:background="@drawable/rectangle_statistic"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/introductionText"></View>
 
@@ -85,38 +87,60 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/titleNotification" />
 
-        <DatePicker
-            android:id="@+id/datePicker"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="-20dp"
-            android:calendarViewShown="false"
-            android:datePickerMode="spinner"
-            android:scaleX="0.8"
-            android:scaleY="0.8"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/messageNotification" />
-
-        <TimePicker
-            android:id="@+id/timePicker"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="-50dp"
-            android:numbersTextColor="@color/black"
-            android:scaleX="0.8"
-            android:scaleY="0.8"
-            android:timePickerMode="spinner"
-            app:layout_constraintStart_toEndOf="@id/datePicker"
-            app:layout_constraintTop_toBottomOf="@id/messageNotification" />
-
         <Button
             android:id="@+id/submitButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:text="Schedule notification"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/datePicker" />
+            app:layout_constraintTop_toBottomOf="@+id/timeView" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/dateView"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            app:boxBackgroundColor="#8C94DD"
+            app:endIconDrawable="@drawable/ic_baseline_calendar_today_24"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/messageNotification">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:focusable="false"
+                android:hint="@string/pick_date" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/timeView"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:boxBackgroundColor="#8C94DD"
+            app:endIconDrawable="@drawable/ic_baseline_access_time_24"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dateView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:focusable="false"
+                android:hint="@string/pick_time" />
+        </com.google.android.material.textfield.TextInputLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -25,4 +25,7 @@
     <string name="notification">notification</string>
     <string name="introduction_text">FORGET TO WASH HANDS\nOR\nCHANGE MASK?</string>
     <string name="title_notification">Title</string>
+    <string name="search">Search</string>
+    <string name="pick_date">Pick a date</string>
+    <string name="pick_time">Pick a time</string>
 </resources>

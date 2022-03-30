@@ -11,10 +11,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CovidTrackerViewModel : ViewModel() {
-    val api = CovidTrackerAPIProvider.api
-    private val _countryInfo= MutableLiveData<CountryData>()
-    val countryInfo:LiveData<CountryData> = _countryInfo
-
+    private val api = CovidTrackerAPIProvider.api
+    private val _countryInfo = MutableLiveData<CountryData>()
+    val countryInfo: LiveData<CountryData> = _countryInfo
 
     fun getDataOfCountry(country: String) {
         viewModelScope.launch(Dispatchers.IO) {

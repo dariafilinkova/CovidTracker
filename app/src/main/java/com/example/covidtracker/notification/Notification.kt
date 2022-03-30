@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC
 import com.example.covidtracker.R
 
 const val notificationID = 1
@@ -17,6 +18,7 @@ class Notification : BroadcastReceiver() {
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(intent.getStringExtra(titleExtra))
             .setContentText(intent.getStringExtra(messageExtra))
+            .setVisibility(VISIBILITY_PUBLIC)
             .build()
 
         val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
