@@ -59,6 +59,9 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/titleNotification"
+            android:maxLines="1"
+            android:inputType="text"
+            android:imeOptions="actionNext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="196dp"
