@@ -83,7 +83,7 @@ class CovidTrackerFragment : Fragment() {
                 }
             }
             countryName.setOnClickListener {
-                    findNavController().navigate(R.id.action_covid_tracker_home_to_country_list)
+                    findNavController().navigate(R.id.action_covid_tracker_home_to_covidTrackerLocationFragment)
 
             }
         }

@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.covidtracker.MainActivity
 import com.example.covidtracker.R
 import com.example.covidtracker.data.CountryAdapter
 import com.example.covidtracker.databinding.FragmentCountryListBinding
@@ -59,7 +60,12 @@ class CountryListFragment : Fragment() {
 
     private fun setCountryResult(country:String){
         setFragmentResult("request_key", bundleOf(("country" to country)))
-        findNavController().popBackStack()
+
+        //findNavController().navigate(R.id.action_country_list_to_covid_tracker_home_back)
+        //findNavController().clearBackStack(R.id.action_covidTrackerLocationFragment_to_covid_tracker_home)
+        //findNavController().popBackStack()
+        val mainActivity = requireActivity() as MainActivity
+        mainActivity.returnToHomeFragment()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -88,14 +94,6 @@ class CountryListFragment : Fragment() {
             })
         }
     }
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        val id = item.itemId
-//        if (id == R.id.search) {
-//            Toast.makeText(activity, "Settings", Toast.LENGTH_SHORT).show()
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
 
     companion object {
 

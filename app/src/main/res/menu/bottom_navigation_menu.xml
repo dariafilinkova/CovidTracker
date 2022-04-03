@@ -5,7 +5,7 @@
         android:icon="@drawable/ic_home"
         android:title="@string/home" />
     <item
-        android:id="@+id/country_list"
+        android:id="@+id/covid_tracker_location"
         android:icon="@drawable/travel_explore"
         android:title="@string/global" />
     <item

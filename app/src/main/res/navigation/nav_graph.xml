@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@+id/covid_tracker_home">
+    app:startDestination="@id/covid_tracker_location">
 
     <fragment
         android:id="@+id/covid_tracker_home"
@@ -11,17 +11,33 @@
         android:label="fragment_covid_tracker"
         tools:layout="@layout/fragment_covid_tracker" >
         <action
-            android:id="@+id/action_covid_tracker_home_to_country_list"
-            app:destination="@id/country_list" />
+            android:id="@+id/action_covid_tracker_home_to_covidTrackerLocationFragment"
+            app:destination="@id/covid_tracker_location" />
     </fragment>
     <fragment
         android:id="@+id/country_list"
         android:name="com.example.covidtracker.countryList.CountryListFragment"
-        android:layout="@layout/fragment_country_list" />
+        android:layout="@layout/fragment_country_list" >
+        <action
+            android:id="@+id/action_country_list_to_covid_tracker_home_back"
+            app:destination="@id/covid_tracker_home" />
+    </fragment>
     <fragment
         android:id="@+id/covid_tracker_notification"
         android:name="com.example.covidtracker.notification.CovidTrackerNotificationFragment"
         android:label="fragment_covid_tracker_notification"
         tools:layout="@layout/fragment_covid_tracker_notification" />
+    <fragment
+        android:id="@+id/covid_tracker_location"
+        android:name="com.example.covidtracker.location.CovidTrackerLocationFragment"
+        android:label="fragment_covid_tracker_location"
+        tools:layout="@layout/fragment_covid_tracker_location" >
+        <action
+            android:id="@+id/action_covidTrackerLocationFragment_to_country_list"
+            app:destination="@id/country_list" />
+        <action
+            android:id="@+id/action_covidTrackerLocationFragment_to_covid_tracker_home"
+            app:destination="@id/covid_tracker_home" />
+    </fragment>
 
 </navigation>

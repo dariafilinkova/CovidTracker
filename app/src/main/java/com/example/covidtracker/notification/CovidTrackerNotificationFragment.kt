@@ -40,8 +40,7 @@ class CovidTrackerNotificationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        binding.messageNotification.onAction(EditorInfo.IME_ACTION_DONE){
-//        }
+
         binding.date.setOnClickListener {
             showDate()
         }
@@ -80,17 +79,7 @@ class CovidTrackerNotificationFragment : Fragment() {
         @JvmStatic
         fun newInstance() = CovidTrackerNotificationFragment()
     }
-//    fun EditText.onAction(action: Int, runAction: () -> Unit) {
-//        this.setOnEditorActionListener { v, actionId, event ->
-//            return@setOnEditorActionListener when (actionId) {
-//                action -> {
-//                    runAction.invoke()
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
-//    }
+
     private fun showDate() {
         val currentDate = Calendar.getInstance()
         val listener =
