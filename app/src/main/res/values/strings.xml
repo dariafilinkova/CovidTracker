@@ -28,4 +28,5 @@
     <string name="search">Search</string>
     <string name="pick_date">Pick a date</string>
     <string name="pick_time">Pick a time</string>
+    <string name="app_name_location">COVID - 19\nCoronavirus Tracker App</string>
 </resources>

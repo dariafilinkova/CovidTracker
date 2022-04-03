@@ -107,7 +107,7 @@ class CovidTrackerNotificationFragment : Fragment() {
                 "Please choose the date "
             )
             .setPositiveButton("Okay") { _, _ -> }
-            .show().window?.setLayout(1200, 580)
+            .show().window?.setLayout(1000, 540)
     }
 
     private fun showTime() {

@@ -24,14 +24,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        if (savedInstanceState == null) {
-//            supportFragmentManager
-//                .beginTransaction()
-//                .replace(R.id.fragmentContainer, CovidTrackerLocationFragment.newInstance())
-//                .commit()
-//        }
         val navView: BottomNavigationView = binding.bottomNavigation
-         var navController = findNavController(R.id.nav_host_fragment_activity_main)
+        var navController = findNavController(R.id.nav_host_fragment_activity_main)
 
         navView.setupWithNavController(navController)
 //        val appBarConfiguration = AppBarConfiguration(setOf(
@@ -40,10 +34,9 @@ class MainActivity : AppCompatActivity() {
 //        navView.setupWithNavController(navController)
 
     }
-fun returnToHomeFragment(){
-    binding.bottomNavigation.selectedItemId=R.id.covid_tracker_home
-}
-//    override fun onNavigateUp(): Boolean {
-//        return navController.navigateUp() || super.onNavigateUp()
-//    }
+
+    fun returnToHomeFragment() {
+        binding.bottomNavigation.selectedItemId = R.id.covid_tracker_home
+    }
+
 }

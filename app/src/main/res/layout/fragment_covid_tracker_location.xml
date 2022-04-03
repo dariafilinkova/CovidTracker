@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".location.CovidTrackerLocationFragment">
+
+    <TextView
+        android:id="@+id/appNameLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="3dp"
+        android:text="@string/app_name_location"
+        android:textSize="@dimen/title_size2"
+        android:textAlignment="center"
+        android:fontFamily="@string/bold"
+        android:textColor="@color/black"/>
+    <View
+        android:id="@+id/tourist"
+        android:layout_width="219dp"
+        android:layout_height="219dp"
+        android:background="@drawable/tourist"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/appNameLocation"/>
+
+
+        <Button
+            app:layout_constraintStart_toEndOf="@id/tourist"
+            android:id="@+id/btnChooseCountry"
+            app:layout_constraintTop_toBottomOf="@id/appNameLocation"
+            android:layout_marginTop="160dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rectangle"
+            android:padding="5dp"
+            android:text="Choose country"
+            android:textColor="#fff" />
+
+<View
+    android:layout_width="219dp"
+    android:layout_height="219dp"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_marginStart="160dp"
+    android:layout_marginEnd="10dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="22dp"
+    app:layout_constraintTop_toBottomOf="@id/tourist"
+    android:background="@drawable/current_location"
+    />
+
+    <Button
+        android:id="@+id/btnGetLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rectangle"
+        android:padding="5dp"
+        android:text="Current Location"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
