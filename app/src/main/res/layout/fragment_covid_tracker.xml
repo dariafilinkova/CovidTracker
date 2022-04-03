@@ -101,15 +101,16 @@
 
         <TextView
             android:id="@+id/countryName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="150dp"
             android:layout_marginTop="50dp"
             android:drawableRight="@drawable/ic_arrow_drop_down"
             android:fontFamily="@string/bold"
             android:text="@string/country"
             android:textColor="#3D187A"
             android:textSize="@dimen/title_size2"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/covid_in"
             app:layout_constraintTop_toBottomOf="@id/header" />
 
@@ -141,7 +142,7 @@
             android:id="@+id/piechart"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_marginTop="125dp"
+            android:layout_marginTop="25dp"
             android:padding="8dp"
             app:egInnerPaddingColor="@color/white"
             app:egLegendHeight="0dp"
@@ -149,18 +150,18 @@
             app:egUsePieRotation="true"
             app:egValueTextSize="0sp"
             app:layout_constraintEnd_toEndOf="@id/header"
-            app:layout_constraintTop_toBottomOf="@id/header" />
+            app:layout_constraintTop_toBottomOf="@id/countryName" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="149dp"
-            android:layout_marginTop="145dp"
+            android:layout_marginTop="45dp"
             android:gravity="center_vertical"
             android:orientation="vertical"
             app:layout_constraintEnd_toStartOf="@+id/piechart"
             app:layout_constraintStart_toStartOf="@id/header"
-            app:layout_constraintTop_toBottomOf="@id/header"
+            app:layout_constraintTop_toBottomOf="@id/countryName"
             android:layout_marginEnd="60dp">
 
             <LinearLayout
