@@ -1,17 +1,14 @@
 package com.example.covidtracker.notification
 
-import android.R
+import com.example.covidtracker.R
 import android.app.*
-import android.content.Context.NOTIFICATION_SERVICE
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
-import android.widget.EditText
+import androidx.navigation.fragment.findNavController
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.workDataOf

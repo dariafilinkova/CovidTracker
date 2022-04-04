@@ -8,6 +8,7 @@ import com.example.covidtracker.databinding.FragmentCovidTrackerBinding
 import org.eazegraph.lib.models.PieModel
 import android.graphics.Color
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -36,7 +37,7 @@ class CovidTrackerFragment : Fragment() {
         FragmentCovidTrackerBinding.bind(view).apply {
             var date = binding.date
             date.setText(SimpleDateFormat().format(Calendar.getInstance().time).toString())
-
+            refresh.isRefreshing = false
             viewModel.countryInfo.observe(viewLifecycleOwner) { countryData ->
                 with(binding) {
                     countryName.text = countryData.country
@@ -90,6 +91,16 @@ class CovidTrackerFragment : Fragment() {
         setFragmentResultListener("request_key") { requestKey, bundle ->
             val country = bundle.getString("country")
             viewModel.getDataOfCountry(country.orEmpty())
+            updateData(country.orEmpty())
+        }
+
+    }
+    private fun updateData(country : String){
+            binding.refresh.setOnRefreshListener {
+                viewModel.getDataOfCountry(country)
+                binding.date.setText(
+                    SimpleDateFormat().format(Calendar.getInstance().time).toString()
+                )
         }
     }
 

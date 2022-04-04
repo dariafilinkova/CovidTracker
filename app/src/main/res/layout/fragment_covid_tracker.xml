@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/refresh"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -105,14 +107,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="150dp"
             android:layout_marginTop="50dp"
-            android:drawableRight="@drawable/ic_arrow_drop_down"
             android:fontFamily="@string/bold"
             android:text="@string/country"
             android:textColor="#3D187A"
             android:textSize="@dimen/title_size2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/covid_in"
-            app:layout_constraintTop_toBottomOf="@id/header" />
+            app:layout_constraintTop_toBottomOf="@id/header"
+            app:drawableRightCompat="@drawable/ic_arrow_drop_down" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -613,10 +615,6 @@
 
             </com.google.android.material.card.MaterialCardView>
         </GridLayout>
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/refresh"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    </ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
