@@ -340,7 +340,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/bold"
-                        android:text="12345"
+                        android:text="N/A"
                         android:textColor="@color/black"
                         android:textSize="@dimen/title_size" />
 
@@ -350,7 +350,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/regular"
-                        android:text="( + 32 )"
+                        android:text=" + 0 "
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_size" />
                 </LinearLayout>
@@ -399,7 +399,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/bold"
-                        android:text="12345"
+                        android:text="N/A"
                         android:textColor="@color/black"
                         android:textSize="@dimen/title_size" />
 
@@ -459,7 +459,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/bold"
-                        android:text="12345"
+                        android:text="N/A"
                         android:textColor="@color/black"
                         android:textSize="@dimen/title_size" />
 
@@ -469,7 +469,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/regular"
-                        android:text="( + 32 )"
+                        android:text="+ 0"
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_size" />
                 </LinearLayout>
@@ -519,7 +519,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/bold"
-                        android:text="12345"
+                        android:text="N/A"
                         android:textColor="@color/black"
                         android:textSize="@dimen/title_size" />
 
@@ -529,7 +529,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/regular"
-                        android:text="( + 32 )"
+                        android:text=" + 0 "
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_size" />
                 </LinearLayout>
@@ -578,7 +578,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
                         android:fontFamily="@string/bold"
-                        android:text="12345"
+                        android:text="N/A"
                         android:textColor="@color/black"
                         android:textSize="@dimen/title_size" />
 

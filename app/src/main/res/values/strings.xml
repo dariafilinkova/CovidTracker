@@ -18,7 +18,7 @@
     <string name="covid_19">COVID-19 in</string>
     <string name="updated_at">Updated at</string>
     <string name="date">01.01.2022</string>
-    <string name="country">Belarus</string>
+    <string name="country">Choose country</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="home">home</string>
     <string name="global">global</string>
