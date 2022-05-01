@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_home"
+    app:startDestination="@id/covidTrackerFragment">
+    <fragment
+        android:id="@+id/covid_tracker_location_fragment"
+        android:name="com.example.covidtracker.location.CovidTrackerLocationFragment"
+        android:label="fragment_covid_tracker_location"
+        tools:layout="@layout/fragment_covid_tracker_location" >
+        <action
+            android:id="@+id/action_covid_tracker_location_fragment_to_country_list_fragment"
+            app:destination="@id/country_list_fragment" />
+        <action
+            android:id="@+id/action_covid_tracker_location_fragment_to_covid_tracker_fragment"
+            app:destination="@id/covidTrackerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/country_list_fragment"
+        android:name="com.example.covidtracker.countryList.CountryListFragment"
+        android:label="CountryListFragment" >
+        <action
+            android:id="@+id/action_country_list_fragment_to_covid_tracker_fragment"
+            app:destination="@id/covidTrackerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/covidTrackerFragment"
+        android:name="com.example.covidtracker.CovidTrackerFragment"
+        android:label="CovidTrackerFragment" >
+        <action
+            android:id="@+id/action_covidTrackerFragment_to_covid_tracker_location_fragment"
+            app:destination="@id/covid_tracker_location_fragment" />
+    </fragment>
+</navigation>

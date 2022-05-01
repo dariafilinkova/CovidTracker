@@ -11,8 +11,12 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.covidtracker.countryList.CountryListFragment
+import com.example.covidtracker.location.CovidTrackerLocationFragment
 import java.util.*
 import java.text.SimpleDateFormat
 
@@ -33,7 +37,6 @@ class CovidTrackerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         FragmentCovidTrackerBinding.bind(view).apply {
             var date = binding.date
             date.setText(SimpleDateFormat().format(Calendar.getInstance().time).toString())
@@ -84,8 +87,7 @@ class CovidTrackerFragment : Fragment() {
                 }
             }
             countryName.setOnClickListener {
-                    findNavController().navigate(R.id.action_covid_tracker_home_to_covidTrackerLocationFragment)
-
+                findNavController().navigate(R.id.action_covidTrackerFragment_to_covid_tracker_location_fragment)
             }
         }
         setFragmentResultListener("request_key") { requestKey, bundle ->

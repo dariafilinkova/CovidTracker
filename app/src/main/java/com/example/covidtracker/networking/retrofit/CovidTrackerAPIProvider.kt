@@ -9,7 +9,8 @@ import retrofit2.Retrofit
 
 
 object CovidTrackerAPIProvider {
-        private const val BASE_URL = "https://disease.sh/v3/covid-19/"
+    private const val BASE_URL = "https://disease.sh/v3/covid-19/"
+    //"https://corona.lmao.ninja/v2/"
     private val logging = HttpLoggingInterceptor()
     private val client = OkHttpClient.Builder().addInterceptor(logging).build()
 

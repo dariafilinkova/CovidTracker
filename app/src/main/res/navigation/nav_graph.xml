@@ -3,41 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/covid_tracker_location">
+    app:startDestination="@id/nav_graph_home">
 
     <fragment
         android:id="@+id/covid_tracker_home"
         android:name="com.example.covidtracker.CovidTrackerFragment"
-        android:label="fragment_covid_tracker"
-        tools:layout="@layout/fragment_covid_tracker" >
-        <action
-            android:id="@+id/action_covid_tracker_home_to_covidTrackerLocationFragment"
-            app:destination="@id/covid_tracker_location" />
-    </fragment>
-    <fragment
-        android:id="@+id/country_list"
-        android:name="com.example.covidtracker.countryList.CountryListFragment"
-        android:layout="@layout/fragment_country_list" >
-        <action
-            android:id="@+id/action_country_list_to_covid_tracker_home_back"
-            app:destination="@id/covid_tracker_home" />
-    </fragment>
+        android:label="fragment_covid_tracker_home"
+        tools:layout="@layout/fragment_covid_tracker" />
+
     <fragment
         android:id="@+id/covid_tracker_notification"
         android:name="com.example.covidtracker.notification.CovidTrackerNotificationFragment"
         android:label="fragment_covid_tracker_notification"
         tools:layout="@layout/fragment_covid_tracker_notification" />
     <fragment
-        android:id="@+id/covid_tracker_location"
-        android:name="com.example.covidtracker.location.CovidTrackerLocationFragment"
-        android:label="fragment_covid_tracker_location"
-        tools:layout="@layout/fragment_covid_tracker_location" >
-        <action
-            android:id="@+id/action_covidTrackerLocationFragment_to_country_list"
-            app:destination="@id/country_list" />
-        <action
-            android:id="@+id/action_covidTrackerLocationFragment_to_covid_tracker_home"
-            app:destination="@id/covid_tracker_home" />
-    </fragment>
+        android:id="@+id/covid_tracker_global_fragment"
+        android:name="com.example.covidtracker.globalCovid.CovidTrackerGlobalFragment"
+        android:label="covid_tracker_global_fragment"
+        tools:layout="@layout/covid_tracker_global_fragment" />
+    <include app:graph="@navigation/nav_graph_home" />
 
 </navigation>

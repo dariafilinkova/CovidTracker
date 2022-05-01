@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="confirm">Confirm</string>
     <string name="active">Active</string>
     <string name="recovered">Recovered</string>
     <string name="country_name">Country name</string>
     <string name="total_cases">Total cases</string>
+    <string name="numberOfCountry">01</string>
+    <string name="search_country">search country</string>
+    <string name="social_distance">SOCIAL DISTANCE</string>
+    <string name="wash_your_hands">WASH\nYOUR\nHANDS</string>
+    <string name="wear_a_face_mask">WEAR A\nFACE MASK</string>
+    <string name="covid_19">COVID-19 in</string>
+    <string name="updated_at">Updated at</string>
+    <string name="date">01.01.2022</string>
+    <string name="country">Choose country</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="home">home</string>
+    <string name="global">global</string>
+    <string name="notification">notification</string>
+    <string name="introduction_text">FORGET TO WASH HANDS\nOR\nCHANGE MASK?</string>
+    <string name="title_notification">Title</string>
+    <string name="search">Search</string>
+    <string name="pick_date">Pick a date</string>
+    <string name="pick_time">Pick a time</string>
+    <string name="app_name_location">COVID - 19\nCoronavirus Tracker App</string>
 </resources>

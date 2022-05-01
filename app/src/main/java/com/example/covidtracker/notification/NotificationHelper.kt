@@ -23,7 +23,7 @@ class NotificationHelper(val context: Context) {
 //        }
         //val pendingIntent = PendingIntent.getActivity(context,0,intent, 0)
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setSmallIcon(R.drawable.notification_icon)
             .setContentTitle(title)
             .setContentText(message)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)

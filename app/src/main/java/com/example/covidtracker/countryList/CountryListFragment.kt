@@ -19,6 +19,7 @@ import com.example.covidtracker.MainActivity
 import com.example.covidtracker.R
 import com.example.covidtracker.data.CountryAdapter
 import com.example.covidtracker.databinding.FragmentCountryListBinding
+import com.example.covidtracker.location.CovidTrackerLocationFragment
 
 class CountryListFragment : Fragment() {
     private lateinit var binding: FragmentCountryListBinding
@@ -62,12 +63,10 @@ class CountryListFragment : Fragment() {
 
     private fun setCountryResult(country: String) {
         setFragmentResult("request_key", bundleOf(("country" to country)))
+         findNavController().navigate(R.id.action_country_list_fragment_to_covid_tracker_fragment)
+//        val mainActivity = requireActivity() as MainActivity
+//        mainActivity.returnToHomeFragment()
 
-        //findNavController().navigate(R.id.action_country_list_to_covid_tracker_home_back)
-        //findNavController().clearBackStack(R.id.action_covidTrackerLocationFragment_to_covid_tracker_home)
-        //findNavController().popBackStack()
-        val mainActivity = requireActivity() as MainActivity
-        mainActivity.returnToHomeFragment()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -81,12 +80,13 @@ class CountryListFragment : Fragment() {
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(newText: String?): Boolean {
                     if (adapter.country.isEmpty()) {
-                    Toast.makeText(requireContext(), "No matching countries", LENGTH_SHORT)
-                        .show()
-                        }
+                        Toast.makeText(requireContext(), "No matching countries", LENGTH_SHORT)
+                            .show()
+                    }
                     return false
                 }
 
+                //viewModel
                 override fun onQueryTextChange(newText: String?): Boolean {
                     searchView.inputType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
                     adapter.country = if (!newText.isNullOrEmpty()) {

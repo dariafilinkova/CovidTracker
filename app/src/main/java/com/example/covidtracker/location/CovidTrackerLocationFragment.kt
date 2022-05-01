@@ -1,21 +1,29 @@
 package com.example.covidtracker.location
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
+import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
 import android.os.Looper
+import android.provider.Settings
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.graphics.translationMatrix
 import androidx.core.os.bundleOf
 import androidx.fragment.app.commit
 import androidx.fragment.app.setFragmentResult
@@ -24,26 +32,31 @@ import androidx.navigation.fragment.findNavController
 import com.example.covidtracker.CovidTrackerFragment
 import com.example.covidtracker.R
 import com.example.covidtracker.countryList.CountryListFragment
-import com.example.covidtracker.databinding.FragmentCountryListBinding
-import com.example.covidtracker.databinding.FragmentCovidTrackerBinding
 import com.example.covidtracker.databinding.FragmentCovidTrackerLocationBinding
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import org.jetbrains.annotations.NotNull
+import java.security.Permission
 import java.util.*
+
 
 
 class CovidTrackerLocationFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentCovidTrackerLocationBinding
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var permissionLauncher: ActivityResultLauncher<String>
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        registerPermissionListener()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCovidTrackerLocationBinding.inflate(inflater, container, false)
+        fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireActivity())
 
         return binding.root
     }
@@ -57,85 +70,133 @@ class CovidTrackerLocationFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View?) {
         when (view!!.id) {
             R.id.btnGetLocation -> chooseCountryWithCurrentLocation()
-            R.id.btnChooseCountry -> findNavController().navigate(R.id.action_covidTrackerLocationFragment_to_country_list)
+            R.id.btnChooseCountry -> findNavController().navigate(R.id.action_covid_tracker_location_fragment_to_country_list_fragment)
         }
     }
 
-    fun chooseCountryWithCurrentLocation() {
-        if (context?.let { it1 ->
-                ContextCompat.checkSelfPermission(
-                    it1, android.Manifest.permission.ACCESS_FINE_LOCATION
-                )
-            } != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-                REQUEST_PERMISSION_REQUEST_CODE
-            )
+
+    private fun registerPermissionListener() {
+        permissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+                if (isGranted) {
+                    Log.i("DEBUG", "permission granted")
+                } else {
+                    Log.i("DEBUG", "permission denied")
+                }
+            }
+    }
+
+
+    private fun chooseCountryWithCurrentLocation() {
+        if (checkPermissions()) {
+            getCurrentLocation()
+            findNavController().navigate(R.id.action_covid_tracker_location_fragment_to_covid_tracker_fragment)
         } else {
-
-                getCurrentLocation()
+            permissionLauncher.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
         }
-        findNavController().navigate(R.id.action_covidTrackerLocationFragment_to_covid_tracker_home)
-
     }
 
     private fun getCurrentLocation() {
-        ActivityCompat.requestPermissions(
-            requireActivity(),
-            arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-            REQUEST_PERMISSION_REQUEST_CODE
-        )
-        var locationRequest = LocationRequest()
-        locationRequest.interval = 10000
-        locationRequest.fastestInterval = 5000
-        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        val locationManager: LocationManager =
+            activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+            || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+        ) {
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    android.Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                Toast.makeText(
+                    requireContext(),
+                    "You need to allow use your location",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            fusedLocationProviderClient.lastLocation.addOnCompleteListener(requireActivity()) { task ->
+//                val location: Location? = task.result
+//                if (location != null) {
+//                    Toast.makeText(requireContext(), "Get success", Toast.LENGTH_SHORT).show()
+//                    Log.d("aaa", "${location.latitude}")
+//                    Log.d("aaa", "${location.longitude}")
+//
+//                } else {
+                val locationRequest = LocationRequest.create().apply {
+                    interval = 10000
+                    fastestInterval = 1000
+                    priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+                    maxWaitTime = 1000
+                    numUpdates = 2
+                }
+                val geocoder = Geocoder(activity, Locale.getDefault())
+                var addresses: List<Address>
+                LocationServices.getFusedLocationProviderClient(requireActivity())
+                    .requestLocationUpdates(locationRequest, object : LocationCallback() {
+                        override fun onLocationResult(locationResult: LocationResult) {
+                            if (!locationResult.equals(0)) {
+                                super.onLocationResult(locationResult)
+                            }
+                            LocationServices.getFusedLocationProviderClient(requireActivity())
+                                .removeLocationUpdates(this)
+                            if (!locationResult.equals(0) && locationResult.locations.size > 0) {
+                                val locIndex = locationResult.locations.size - 1
 
-        //now getting address from latitude and longitude
+                                val latitude = locationResult.locations[locIndex].latitude
+                                val longitude = locationResult.locations[locIndex].longitude
 
-        val geocoder = Geocoder(activity, Locale.getDefault())
-        var addresses: List<Address>
+                                addresses = geocoder.getFromLocation(latitude, longitude, 1)
+                                    //val address: String = addresses[0].countryName
+                                val address: String = addresses.first().countryName.toString()
+                                    //  val locale : Locale("en":,add)
+                                Log.d("c", address)
+                                setCountryResult(address)
+                            }
+                        }
+                    }, Looper.getMainLooper())
+            }
 
-        if (ActivityCompat.checkSelfPermission(
+        }
+//        }
+//        else {
+//            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+//        }
+    }
+
+
+
+    private fun checkPermissions(): Boolean {
+        if (ContextCompat.checkSelfPermission(
                 requireContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+            ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
                 requireContext(),
                 android.Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
+            ) == PackageManager.PERMISSION_GRANTED
         ) {
-            Toast.makeText(context, "No permission", Toast.LENGTH_SHORT)
-            return
+            return true
         }
-        LocationServices.getFusedLocationProviderClient(requireActivity())
-            .requestLocationUpdates(locationRequest, object : LocationCallback() {
-                override fun onLocationResult(locationResult: LocationResult) {
-                    if (!locationResult.equals(0)) {
-                        super.onLocationResult(locationResult)
-                    }
-                    LocationServices.getFusedLocationProviderClient(requireActivity())
-                        .removeLocationUpdates(this)
-                    if (!locationResult.equals(0) && locationResult.locations.size > 0) {
-                        var locIndex = locationResult.locations.size - 1
-
-                        var latitude = locationResult.locations.get(locIndex).latitude
-                        var longitude = locationResult.locations.get(locIndex).longitude
-
-                        addresses = geocoder.getFromLocation(latitude, longitude, 1)
-                        var address: String = addresses[0].countryName
-                        setCountryResult(address)
-                    }
-                }
-            }, Looper.getMainLooper())
-
+        return false
     }
+
+
+
+    private fun isLocationEnabled(): Boolean {
+        val locationManager: LocationManager =
+            activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
+    }
+
 
     companion object {
 
         @JvmStatic
         fun newInstance() = CovidTrackerLocationFragment()
-        const val REQUEST_PERMISSION_REQUEST_CODE = 2020
+        const val REQUEST_PERMISSION_CODE = 100
     }
 
     private fun setCountryResult(country: String) {
